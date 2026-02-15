@@ -389,35 +389,40 @@ def run_analysis(df: pd.DataFrame) -> str:
                      f"| {ns} | {ff(ms)} | {ff(ss)} |")
     lines.append("")
 
-    # Wilcoxon paired (RQ3a) — separate Holm family
+    # Wilcoxon paired (RQ3a) + boundary clarity (RQ3b) — single Holm family (6 tests)
     lines.append("### RQ3a: Wilcoxon Signed-Rank ISO 26262 vs SOTIF")
     lines.append("")
     rq3a_results = []
     for item in ROLE_COLS:
         res = wilcoxon_paired(df[f"iso26262_role_{item}"], df[f"sotif_role_{item}"])
         rq3a_results.append((ROLE_LABELS[item], res))
-    rq3a_holm = holm_correction([r["p"] for _, r in rq3a_results])
+
+    # RQ3b: boundary clarity
+    boundary = df["sotif_boundary_clarity"]
+    b_res = one_sample_wilcoxon(boundary, median=3.0)
+
+    # Holm correction over all 6 RQ3 tests (5 role + 1 boundary)
+    rq3_pvals = [r["p"] for _, r in rq3a_results] + [b_res["p"]]
+    rq3_holm = holm_correction(rq3_pvals)
 
     lines.append("| Activity | n(pair) | n(nz) | W | p | p(Holm) | r |")
     lines.append("|----------|---------|-------|---|---|---------|---|")
     for i, (label, res) in enumerate(rq3a_results):
         lines.append(f"| {label} | {res['n_pair']} | {res['n_nonzero']} "
                      f"| {ff(res['W'],1)} | {fp(res['p'])} "
-                     f"| {fp(rq3a_holm[i])}{sig(rq3a_holm[i])} | {fr(res['r'])} |")
+                     f"| {fp(rq3_holm[i])}{sig(rq3_holm[i])} | {fr(res['r'])} |")
     lines.append("")
 
-    # RQ3b: boundary clarity — separate Holm family (single test)
     lines.append("### RQ3b: SOTIF Boundary Clarity (One-Sample Wilcoxon)")
     lines.append("")
-    boundary = df["sotif_boundary_clarity"]
-    b_res = one_sample_wilcoxon(boundary, median=3.0)
     nb, mb, sb = desc(boundary)
     ambig = int(((boundary == 1) | (boundary == 2)).sum())
+    rq3b_holm_p = rq3_holm[5]  # 6th test in the family
     lines.append(f"- n = {nb}, mean = {ff(mb)}, SD = {ff(sb)}")
     lines.append(f"- Rated 'less clear' or 'much less clear': {ambig} ({ambig*100//nb}%)")
     lines.append(f"- One-sample Wilcoxon against median=3: "
                  f"W={ff(b_res['W'],1)}, n_nonzero={b_res['n_nonzero']}, "
-                 f"p={fp(b_res['p'])}, p(Holm)={fp(b_res['p'])}{sig(b_res['p'])}, "
+                 f"p={fp(b_res['p'])}, p(Holm)={fp(rq3b_holm_p)}{sig(rq3b_holm_p)}, "
                  f"r={fr(b_res['r'])}")
     lines.append("")
 
@@ -472,7 +477,7 @@ def run_analysis(df: pd.DataFrame) -> str:
 
     lines.append(f"4. **SOTIF boundary clarity** (RQ3b): below neutral, "
                  f"W={ff(b_res['W'],1)}, p={fp(b_res['p'])}, "
-                 f"p(Holm)={fp(b_res['p'])}, r={fr(b_res['r'])}")
+                 f"p(Holm)={fp(rq3b_holm_p)}, r={fr(b_res['r'])}")
     lines.append("")
 
     return "\n".join(lines)
