@@ -38,8 +38,8 @@ def generate_fig_adoption(data: dict, output_path: Path, n_total: int = 30):
     standards = ["ISO 26262", "SOTIF", "UL 4600"]
     categories = ["In use", "Preparing", "Considering", "No plan"]
 
-    # Grayscale colors + hatching for monochrome printing
-    colors = ["#333333", "#777777", "#AAAAAA", "#DDDDDD"]
+    # Color palette consistent with Fig. 2/3 (steel blue + warm tones)
+    colors = ["#6B8EC2", "#D4A574", "#B0C4DE", "#D9D9D9"]
     hatches = ["", "//", "\\\\", "xx"]
 
     percentages = {}
