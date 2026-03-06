@@ -1,6 +1,6 @@
 # Survey Questionnaire: Adoption of Safety Standards in the Japanese Automotive Industry
 
-This document describes the questionnaire used in the study "Adoption of Safety Standards in the Japanese Automotive Industry" (Matsuno, Ochiai, Kono, SafeComp 2026). The survey was distributed to the JASPAR functional safety working group in December 2025.
+This document describes the questionnaire used in the study "Adoption of Safety Standards in the Japanese Automotive Industry: A Consortium Survey" (Matsuno, Ochiai, Kono, SafeComp 2026). The survey was distributed to the JASPAR functional safety working group in December 2025.
 
 ## Response Scales
 
