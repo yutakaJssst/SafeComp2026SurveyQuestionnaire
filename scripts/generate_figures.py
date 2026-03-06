@@ -66,7 +66,8 @@ def generate_fig_adoption(data: dict, output_path: Path, n_total: int = 30):
     ax.set_yticklabels(standards, fontsize=11)
     ax.set_xlabel("Percentage (%)", fontsize=11)
     ax.set_xlim(0, 100)
-    ax.legend(loc="lower right", fontsize=9, framealpha=0.9)
+    ax.legend(loc="upper right", fontsize=9, framealpha=0.9,
+              bbox_to_anchor=(1.0, 1.15), ncol=4)
     ax.invert_yaxis()
     ax.tick_params(axis="x", labelsize=10)
 
