@@ -12,7 +12,6 @@ This repository provides reproducibility materials for the paper:
 | `data/responses.csv` | Individual-level survey responses (n=30, fully anonymized, English) |
 | `data/rq2b_full_results.md` | Full OEM vs Supplier comparison for all five driver items (RQ2b) |
 | `scripts/analyze.py` | Reproduces all statistical tests reported in the paper |
-| `scripts/generate_figures.py` | Generates Fig. 1 (adoption status) |
 
 ## Data
 
@@ -41,9 +40,6 @@ pip install -r requirements.txt
 
 # Reproduce all statistical analyses
 python scripts/analyze.py
-
-# Generate Fig. 1
-python scripts/generate_figures.py
 ```
 
 ### Requirements
@@ -52,7 +48,7 @@ python scripts/generate_figures.py
 - numpy >= 1.21
 - scipy >= 1.7
 - pandas >= 1.3
-- matplotlib >= 3.4
+- matplotlib >= 3.4 (required only for figure generation in the companion analysis repository)
 
 ## Mapping: Survey Items to Paper Tables/Figures
 
