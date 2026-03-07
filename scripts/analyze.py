@@ -188,10 +188,10 @@ DRIVER_COLS = ["technical_safety", "2nd_party_accountability",
                "industry_conformity"]
 DRIVER_LABELS = {
     "technical_safety": "Technical safety",
-    "2nd_party_accountability": "2nd-party accountability",
-    "3rd_party_accountability": "3rd-party accountability",
+    "2nd_party_accountability": "Accountability to clients",
+    "3rd_party_accountability": "Accountability to end users/certifiers",
     "contract_requirements": "Contract requirements",
-    "industry_conformity": "Industry conformity",
+    "industry_conformity": "Conformity to industry practice",
 }
 
 BC_COLS = ["safety_improvement", "operational_burden", "cost_effectiveness"]

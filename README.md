@@ -66,7 +66,7 @@ python scripts/analyze.py
 
 ## Statistical Methods
 
-All tests follow the methodology described in Section 4 of the paper:
+All tests follow the methodology described in Section 3.3 of the paper:
 
 - **Wilcoxon signed-rank test** (paired comparisons: ISO vs SOTIF)
   - Uses non-zero differences only (`zero_method="wilcox"`)
