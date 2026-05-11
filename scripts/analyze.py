@@ -239,19 +239,19 @@ def run_analysis(df: pd.DataFrame) -> str:
     # --- Adoption status ---
     lines.append("## Adoption Status (Fig. 1)")
     lines.append("")
-    lines.append("| Standard | In use | Preparing | Considering | No plan |")
-    lines.append("|----------|--------|-----------|-------------|---------|")
+    lines.append("| Standard | Active use | Preparing | Considering | No plans |")
+    lines.append("|----------|------------|-----------|-------------|----------|")
     for std, col in [("ISO 26262", "iso26262_adoption"),
                      ("SOTIF", "sotif_adoption"), ("UL 4600", "ul4600_adoption")]:
         vc = df[col].value_counts()
-        lines.append(f"| {std} | {vc.get('In use', 0)} | {vc.get('Preparing', 0)} "
-                     f"| {vc.get('Considering', 0)} | {vc.get('No plan', 0)} |")
+        lines.append(f"| {std} | {vc.get('Active use', 0)} | {vc.get('Preparing', 0)} "
+                     f"| {vc.get('Considering', 0)} | {vc.get('No plans', 0)} |")
     lines.append("")
 
     # ------------------------------------------------------------------
     # RQ1: Perceived benefits and costs
     # ------------------------------------------------------------------
-    lines.append("## RQ1: Perceived Benefits and Costs (Table 2)")
+    lines.append("## RQ1: Perceived Benefits and Costs (Table 3)")
     lines.append("")
     lines.append("### Descriptive Statistics")
     lines.append("")
@@ -312,7 +312,7 @@ def run_analysis(df: pd.DataFrame) -> str:
     # ------------------------------------------------------------------
     # RQ2: Adoption drivers
     # ------------------------------------------------------------------
-    lines.append("## RQ2: Adoption Drivers (Tables 3--4)")
+    lines.append("## RQ2: Adoption Drivers (Tables 4--5)")
     lines.append("")
     lines.append("### Descriptive Statistics")
     lines.append("")
@@ -326,7 +326,7 @@ def run_analysis(df: pd.DataFrame) -> str:
     lines.append("")
 
     # Wilcoxon paired (RQ2a)
-    lines.append("### RQ2a: Wilcoxon Signed-Rank ISO 26262 vs SOTIF (Table 3)")
+    lines.append("### RQ2a: Wilcoxon Signed-Rank ISO 26262 vs SOTIF (Table 4)")
     lines.append("")
     rq2a_results = []
     for item in DRIVER_COLS:
@@ -352,7 +352,7 @@ def run_analysis(df: pd.DataFrame) -> str:
     lines.append("")
 
     # OEM vs Supplier (RQ2b)
-    lines.append("### RQ2b: OEM vs Supplier (Mann-Whitney U, Table 4)")
+    lines.append("### RQ2b: OEM vs Supplier (Mann-Whitney U, Table 5)")
     lines.append("")
     for std_lbl, prefix in [("ISO 26262", "iso26262_drv"), ("SOTIF", "sotif_drv")]:
         lines.append(f"**{std_lbl}**:")
@@ -376,7 +376,7 @@ def run_analysis(df: pd.DataFrame) -> str:
     # ------------------------------------------------------------------
     # RQ3: V-model role allocation
     # ------------------------------------------------------------------
-    lines.append("## RQ3: V-Model Role Allocation (Table 5)")
+    lines.append("## RQ3: V-Model Role Allocation (Table 6)")
     lines.append("")
     lines.append("### Descriptive Statistics")
     lines.append("")
@@ -429,7 +429,7 @@ def run_analysis(df: pd.DataFrame) -> str:
     # ------------------------------------------------------------------
     # Multi-standard challenges
     # ------------------------------------------------------------------
-    lines.append("## Multi-Standard Challenges (Table 6)")
+    lines.append("## Multi-Standard Challenges (Table 7)")
     lines.append("")
     challenge_counts = {}
     for val in df["multi_standard_challenges"].dropna():

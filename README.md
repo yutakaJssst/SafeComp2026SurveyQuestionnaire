@@ -2,7 +2,7 @@
 
 This repository provides reproducibility materials for the paper:
 
-> Y. Matsuno, S. Ochiai, F. Kono, "Adoption of Safety Standards in the Japanese Automotive Industry: A Consortium Survey," submitted to SafeComp 2026.
+> Y. Matsuno, S. Ochiai, F. Kono, "Adoption of Safety Standards in the Japanese Automotive Industry: A Consortium Study," submitted to SafeComp 2026.
 
 ## Contents
 
@@ -59,9 +59,11 @@ python scripts/analyze.py
 | Table 3 (RQ1: Benefits/Costs) | Q12--Q14, Q28--Q30 | `*_safety_improvement`, `*_operational_burden`, `*_cost_effectiveness` |
 | Table 3 (RQ1: A-SPICE comparison) | Q12--Q14 x Q3 | benefit/cost columns grouped by `aspice_status` |
 | Table 4 (RQ2a: Drivers) | Q7--Q11, Q23--Q27 | `*_drv_*` columns |
+| Fig. 2 (RQ2a: Drivers) | Q7--Q11, Q23--Q27 | `*_drv_*` columns |
 | Table 5 (RQ2b: OEM/Supplier) | Q7--Q11 x Q1, Q23--Q27 x Q1 | driver columns grouped by `company_type` |
 | Table 6 (RQ3a: V-model roles) | Q15--Q19, Q31--Q35 | `*_role_*` columns |
 | Section 4 (RQ3b: Boundary) | Q36 | `sotif_boundary_clarity` |
+| Fig. 3 (RQ3b: Boundary) | Q36 | `sotif_boundary_clarity` |
 | Table 7 (Challenges) | Q57 | `multi_standard_challenges` |
 
 ## Statistical Methods
@@ -74,6 +76,7 @@ All tests follow the methodology described in Section 3.3 of the paper:
 - **Mann-Whitney U test** (independent groups: OEM vs Supplier, A-SPICE maturity)
   - Tie-corrected variance for effect size calculation
 - **One-sample Wilcoxon** (boundary clarity against neutral median = 3)
+- **Friedman test** (within-standard comparison of multiple drivers, listwise deletion)
 - **Holm correction** applied within each test family
 - **Effect size** r = |Z| / sqrt(N); reported only when n_nonzero >= 10
 
