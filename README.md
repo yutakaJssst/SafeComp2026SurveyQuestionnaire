@@ -2,7 +2,7 @@
 
 This repository provides reproducibility materials for the paper:
 
-> Y. Matsuno, S. Ochiai, F. Kono, "Adoption of Safety Standards in the Japanese Automotive Industry: A Consortium Study," submitted to SafeComp 2026.
+> Y. Matsuno, S. Ochiai, F. Kono, "Adoption of Safety Standards in the Japanese Automotive Industry: A Consortium Study," in *Computer Safety, Reliability, and Security (SAFECOMP 2026)*, Lecture Notes in Computer Science, vol. 16868, Springer, pp. 179–194, 2027 (published online 8 August 2026). https://doi.org/10.1007/978-3-032-34867-8_12
 
 ## Contents
 
